@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Cute Animals Selectors</h1>
+    <div id="img-container">
+        <img src="" id="imgPlaceholder" width="400px;">
+    </div>
+    <label for="animals">Choose an animal:</label>
+    <select name="animals" id="animalSelector">
+        <option value="cats">cats</option>
+        <option value="dogs">dogs</option>
+        <option value="hamster">hamster</option>
+        <option value="rabbit">rabbit</option>
+        <option value="wombat">secret animal</option>
+    </select>
+    <button id="submitBtn">Submit</button>
+
+    <br>
+    <div id="secretAnimalBox">
+        <label for="wombat">What's its name?</label>
+        <input type="text" id="answer" name="wombat">
+        <button id="wombatSubmitBtn">Submit Answer</button><br>
+        <p></p>
+    </div>
+
+    </div> 
+    <script>
+        const animalSelector = document.querySelector("#animalSelector");
+        const submitBtn = document.querySelector("#submitBtn");
+        const imgPlaceholder = document.querySelector("#imgPlaceholder");
+        const secretAnimalBox = document.querySelector("#secretAnimalBox");
+        const wombatSubmitBtn = document.querySelector("#wombatSubmitBtn");
+        const answerInput = document.querySelector("#answer");
+        const para = document.querySelector("p")
+
+        function updateImage() {
+            let animalValue = animalSelector.value;
+            if (animalValue === "wombat") {
+                secretAnimalBox.style.display = "block";
+            } else {
+                secretAnimalBox.style.display = "none";
+            }
+
+            switch (animalValue){
+                case ("cats"):
+                imgPlaceholder.src = "cat.png";
+                break;
+
+                case ("dogs"):
+                imgPlaceholder.src = "dog.png";
+                break;
+
+                case ("hamster"):
+                imgPlaceholder.src = "";
+                break;
+
+                case ("rabbit"):
+                imgPlaceholder.src = "";
+                break;
+
+                case ("wombat"):
+                imgPlaceholder.src = "wombat.png";
+                disabledItem();
+                break;
+            }
+        }
+
+        function checkAnswer() {
+            para.textContent = "";
+            let answer = answerInput.value.toLowerCase();
+            if (answer !== "wombat") {
+                para.textContent = "Please enter the correct answer";
+                answerInput.value = "";
+                return;
+            }
+            imgPlaceholder.src = "correct.gif";
+            submitBtn.disabled = false;
+            animalSelector.disabled = false;
+            secretAnimalBox.style.display = "none";
+        }
+
+        function disabledItem() {
+            submitBtn.disabled = true;
+            animalSelector.disabled = true;
+        }
+
+        submitBtn.addEventListener("click", updateImage);
+        wombatSubmitBtn.addEventListener("click", checkAnswer);
+
+
+    </script>
+</body>
+</html>
