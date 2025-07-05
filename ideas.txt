@@ -1,0 +1,8 @@
+1. When people choose from the dropdown menu, an image for the respective animal will appear
+2. When people press the button "No, please give me other thing", a wombat image will appear, together with the box to guess its name
+3. If the guess its correct, the word "the guess is correct! will appear"
+4. If the guess its not correct, the word "The guess it not correct, please try again" will appear.
+5. A clear all button to reset everything
+    1. Clear the image
+    2. Toggle the form box -> Display: none;
+
